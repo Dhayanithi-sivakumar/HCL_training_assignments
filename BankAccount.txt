@@ -1,0 +1,105 @@
+import java.util.Scanner;
+
+class BankAccount {
+    protected String accountNo;
+    protected double balance;
+
+    public BankAccount(String accountNo, double balance) {
+        this.accountNo = accountNo;
+        this.balance = balance;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+        } else {
+            System.out.println("Insufficient balance");
+        }
+    }
+}
+
+class SavingsAccount extends BankAccount {
+    private double interestRate;
+
+    public SavingsAccount(String accountNo, double balance, double interestRate) {
+        super(accountNo, balance);
+        this.interestRate = interestRate;
+    }
+
+    public void addInterest() {
+        double interest = balance * interestRate / 100;
+        balance += interest;
+    }
+}
+
+class SalaryAccount extends BankAccount {
+    private double monthlySalary;
+
+    public SalaryAccount(String accountNo, double balance, double monthlySalary) {
+        super(accountNo, balance);
+        this.monthlySalary = monthlySalary;
+    }
+
+    public void creditSalary() {
+        balance += monthlySalary;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("1. Savings Account");
+        System.out.println("2. Salary Account");
+        System.out.print("Choose account type: ");
+        int choice = sc.nextInt();
+        sc.nextLine();
+
+        if (choice == 1) {
+            System.out.print("Enter account number: ");
+            String acc = sc.nextLine();
+
+            System.out.print("Enter balance: ");
+            double bal = sc.nextDouble();
+
+            System.out.print("Enter interest rate: ");
+            double rate = sc.nextDouble();
+
+            SavingsAccount sa = new SavingsAccount(acc, bal, rate);
+
+            System.out.print("Deposit amount: ");
+            sa.deposit(sc.nextDouble());
+
+            System.out.print("Withdraw amount: ");
+            sa.withdraw(sc.nextDouble());
+
+            sa.addInterest();
+            System.out.println("Final Balance: " + sa.balance);
+
+        } else if (choice == 2) {
+            System.out.print("Enter account number: ");
+            String acc = sc.nextLine();
+
+            System.out.print("Enter balance: ");
+            double bal = sc.nextDouble();
+
+            System.out.print("Enter monthly salary: ");
+            double sal = sc.nextDouble();
+
+            SalaryAccount sala = new SalaryAccount(acc, bal, sal);
+
+            System.out.print("Deposit amount: ");
+            sala.deposit(sc.nextDouble());
+
+            System.out.print("Withdraw amount: ");
+            sala.withdraw(sc.nextDouble());
+
+            sala.creditSalary();
+            System.out.println("Final Balance: " + sala.balance);
+        }
+    }
+}
