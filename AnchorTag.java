@@ -14,7 +14,7 @@ public class AnchorTagTest {
 	  
 	  WebDriver driver = new ChromeDriver();
 
-      driver.get("https://www.miniclip.com/");
+      driver.get("https://www.reddit.com/");
       driver.manage().window().maximize();
 
       List<WebElement> allLinks = driver.findElements(By.tagName("a"));
