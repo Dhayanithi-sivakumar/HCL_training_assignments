@@ -1,0 +1,27 @@
+SelectorsHub is a browser extension mainly used by QA engineers, developers, and test automation engineers for efficient web element inspection. It helps you easily find CSS selectors (like class names, IDs, XPath), which are really important when you're automating web tests (e.g., with Selenium, Cypress, etc.).
+
+Why is it used?
+
+Finding Selectors Easily: When you're working on test automation, you need to identify unique selectors to interact with elements on a webpage, like buttons, text fields, etc. Normally, finding these selectors can be tedious, but SelectorsHub makes it easier.
+
+XPath & CSS Selector Generation: It generates XPath and CSS selectors for you, which you can directly use in your automation scripts.
+
+Helps with Dynamic Elements: If a webpage has dynamic elements (like changing classes or IDs), SelectorsHub helps to find stable selectors that won't change every time the page is reloaded.
+
+Works with Chrome & Firefox: It is an extension, so you can install it on browsers like Chrome or Firefox, and use it directly on the page you're testing.
+
+Steps to Install SelectorsHub:
+
+Install the Extension:
+
+For Chrome: Go to the Chrome Web Store, search for SelectorsHub, and click on Add to Chrome.
+
+For Firefox: Go to the Firefox Add-ons site, search for SelectorsHub, and click on Add to Firefox.
+
+Explore the Features:
+
+Once you install it, you’ll see its icon in the browser toolbar.
+
+When you open a webpage and right-click on an element, you can inspect it, and SelectorsHub will show you all the CSS selectors and XPath options for that element.
+
+It even shows you the best selectors for complex dynamic elements, which can save a lot of time.
