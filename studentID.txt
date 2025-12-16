@@ -1,0 +1,139 @@
+// Demonstrates OOP Principles: Encapsulation, Abstraction, Inheritance, Polymorphism
+
+// Base class demonstrating Encapsulation and Abstraction
+class Person {
+    // Private variables - Encapsulation
+    private String name;
+    private int id;
+    
+    // Constructor
+    public Person(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+    
+    // Getters and Setters - Encapsulation
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public int getId() {
+        return id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    // Method to be overridden - Polymorphism
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("ID: " + id);
+    }
+}
+
+// Student class demonstrating Inheritance
+class Student extends Person {
+    // Private variable - Encapsulation
+    private double marks;
+    
+    // Constructor
+    public Student(String name, int rollNo, double marks) {
+        super(name, rollNo); // Call parent constructor - Inheritance
+        setMarks(marks); // Use setter for validation
+    }
+    
+    // Getter for marks
+    public double getMarks() {
+        return marks;
+    }
+    
+    // Setter with validation - Encapsulation and Data Integrity
+    public void setMarks(double marks) {
+        if (marks < 0) {
+            System.out.println("Error: Marks cannot be below 0. Setting to 0.");
+            this.marks = 0;
+        } else if (marks > 100) {
+            System.out.println("Error: Marks cannot be above 100. Setting to 100.");
+            this.marks = 100;
+        } else {
+            this.marks = marks;
+        }
+    }
+    
+    // Calculate grade based on marks - Abstraction
+    public String calculateGrade() {
+        if (marks >= 90) return "A+";
+        else if (marks >= 80) return "A";
+        else if (marks >= 70) return "B";
+        else if (marks >= 60) return "C";
+        else if (marks >= 50) return "D";
+        else return "F";
+    }
+    
+    // Method Overriding - Polymorphism
+    @Override
+    public void displayInfo() {
+        System.out.println("=== Student Information ===");
+        super.displayInfo(); // Call parent method
+        System.out.println("Roll No: " + getId());
+        System.out.println("Marks: " + marks);
+        System.out.println("Grade: " + calculateGrade());
+    }
+    
+    // Method to check if student passed
+    public boolean hasPassed() {
+        return marks >= 50;
+    }
+}
+
+// Main class to demonstrate OOP concepts
+public class StudentManagementSystem {
+    public static void main(String[] args) {
+        System.out.println("=== Creating Student Objects ===\n");
+        
+        // Creating student objects - Abstraction
+        Student student1 = new Student("Alice Johnson", 101, 85.5);
+        Student student2 = new Student("Bob Smith", 102, 92.0);
+        Student student3 = new Student("Charlie Brown", 103, 45.0);
+        
+        // Displaying student information - Polymorphism
+        student1.displayInfo();
+        System.out.println();
+        
+        student2.displayInfo();
+        System.out.println();
+        
+        student3.displayInfo();
+        System.out.println();
+        
+        // Testing validation - Encapsulation
+        System.out.println("=== Testing Marks Validation ===\n");
+        
+        System.out.println("Attempting to set marks to -10:");
+        student1.setMarks(-10);
+        System.out.println("Current marks: " + student1.getMarks() + "\n");
+        
+        System.out.println("Attempting to set marks to 110:");
+        student1.setMarks(110);
+        System.out.println("Current marks: " + student1.getMarks() + "\n");
+        
+        System.out.println("Setting valid marks to 95:");
+        student1.setMarks(95);
+        System.out.println("Current marks: " + student1.getMarks());
+        System.out.println("New grade: " + student1.calculateGrade() + "\n");
+        
+        // Demonstrating polymorphism with array
+        System.out.println("=== Pass/Fail Status ===\n");
+        Student[] students = {student1, student2, student3};
+        
+        for (Student s : students) {
+            System.out.println(s.getName() + " (Roll No: " + s.getId() + "): " + 
+                             (s.hasPassed() ? "PASSED" : "FAILED"));
+        }
+    }
+}
